@@ -1,0 +1,203 @@
+body 
+{
+    background: #141414;
+	background: -moz-linear-gradient(left, #141414 0%, #202020 49%, #141414 100%);
+	background: -webkit-linear-gradient(left, #141414 0%, #202020 49%, #141414 100%);
+	background: linear-gradient(to right, #141414 0%, #202020 49%, #141414 100%);
+	margin: 0;
+}
+
+header {
+	background: #4A1212;
+	background: -moz-linear-gradient(left, #4A1212 0%, #631818 49%, #4A1212 100%);
+	background: -webkit-linear-gradient(left, #4A1212 0%, #631818 49%, #4A1212 100%);
+	background: linear-gradient(to right, #4A1212 0%, #631818 49%, #4A1212 100%);
+	color: white;
+	text-align: center;
+	margin-bottom: 2%;
+	width: 100%;
+	/* border: 5px solid green; TESTING PURPOSES ONLY */
+}
+.containerHeader {
+	position: relative;
+	/* border: 5px dotted red; TESTING PURPOSES ONLY */
+	height: 140px;
+}
+
+#title 
+{
+	position: absolute;
+	top: 15%;
+	left: 25%;
+    font-size: 250%;
+    text-align: center;
+    font-family: 'Ubuntu', sans-serif;
+    color: #FFFFFF;
+	/* border: 10px solid white; TESTING PURPOSES ONLY */
+	width: 50%;
+}
+
+#loginDiv
+{
+    font-size: 30px;
+    width: 40%;
+    margin-left: 30%;
+    padding: 25px;
+	border-radius: 10px;
+    background: #4A4A4A;
+	background: -moz-linear-gradient(left, #4A4A4A 0%, #585858 49%, #4A4A4A 100%);
+	background: -webkit-linear-gradient(left, #4A4A4A 0%, #585858 49%, #4A4A4A 100%);
+	background: linear-gradient(to right, #4A4A4A 0%, #585858 49%, #4A4A4A 100%);
+}
+
+#loggedInDiv
+{
+    font-size: 30px;
+    width: 70%;
+    margin-left: 15%;
+    padding: 25px;
+	border-radius: 10px 10px 0 0;
+    background: #4A4A4A;
+	background: -moz-linear-gradient(left, #4A4A4A 0%, #585858 49%, #4A4A4A 100%);
+	background: -webkit-linear-gradient(left, #4A4A4A 0%, #585858 49%, #4A4A4A 100%);
+	background: linear-gradient(to right, #4A4A4A 0%, #585858 49%, #4A4A4A 100%);
+}
+
+#accessUIDiv
+{
+    font-size: 30px;
+    width: 50%;
+    margin-left: 25%;
+    padding: 25px;
+	border-radius: 10px;
+    background: #4A4A4A;
+	background: -moz-linear-gradient(left, #4A4A4A 0%, #585858 49%, #4A4A4A 100%);
+	background: -webkit-linear-gradient(left, #4A4A4A 0%, #585858 49%, #4A4A4A 100%);
+	background: linear-gradient(to right, #4A4A4A 0%, #585858 49%, #4A4A4A 100%);
+}
+
+#logoutButton {
+	position: absolute;
+	top: 15%;
+	right: 5%;
+	height: 70%;
+	width: 20px;
+	justify-content: center;
+	align-items: center;
+	border-radius: 10px;
+	/* border: 5px solid blue; TESTING PURPOSES ONLY */
+}
+
+.buttons
+{
+    font-size: 30px;
+    border-radius: 10px;
+    width: 20%;
+    margin-left: 20%;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.buttons2
+{
+    font-size: 30px;
+    border-radius: 10px;
+    width: 40%;
+    margin-left: 30%;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.buttons:hover{
+    background-color: #00d5124f;
+    color: #FFFFFF;
+    opacity: 50%;
+}
+
+.buttons2:hover{
+    background-color: #00d5124f;
+    color: #FFFFFF;
+    opacity: 50%;
+}
+
+#loginName
+{
+	font-size: 30px;
+}
+#loginPassword
+{
+	font-size: 30px;
+}
+#searchText
+{
+	font-size: 30px;
+}
+#colorText
+{
+	font-size: 30px;
+}
+
+input[type="text"],input[type="password"]{
+    border-radius: 0px;
+    text-align: center;
+    width: 50%;
+    margin-left: 25%;
+    margin-bottom: 2%;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+#inner-title{
+    display: inline-block;
+    font-size: 0.8em;
+    width: 90%;
+    text-align: center;
+    margin-left: 5%;
+    margin-bottom: 2%;
+    font-family: 'Ubuntu', sans-serif;
+    color: #ffffff;
+}
+
+#loginResult{
+    display: inline-block;
+    font-size: 0.8em;
+    width: 90%;
+    text-align: center;
+    margin-left: 5%;
+    margin-bottom: 2%;
+    font-family: 'Ubuntu', sans-serif;
+    color: #95060a;
+}
+
+#userName{
+    display: inline-block;
+    width: 80%;
+    margin-left: 10%;
+    text-align: center;
+}
+
+#logoutButton{
+    width: 20%;
+    margin-left: 40%;
+}
+
+select{
+    width: 30%;
+    margin-left: 35%;
+    margin-top: 2%;
+    font-size: 0.75em;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+#colorSearchResult{
+    display: none;
+}
+
+#colorAddResult{
+    display: inline-block;
+    font-size: 0.8em;
+    width: 90%;
+    text-align: center;
+    margin-left: 5%;
+    margin-top: 2%;
+    margin-bottom: 1%;
+    font-family: 'Ubuntu', sans-serif;
+    color: #95060a;
+}
