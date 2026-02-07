@@ -1,4 +1,4 @@
-const urlBase = 'https://groupsixlampproject.app/LAMPAPI';
+const urlBase = 'https://lampstackcolorslukevernon.site//LAMPAPI';
 const extension = 'php';
 
 let userId = 0;
@@ -58,6 +58,14 @@ function doLogin()
 
 }
 
+function doRegister()
+{
+	window.location.href = "register.html";
+	
+	
+
+}
+
 function saveCookie()
 {
 	let minutes = 20;
@@ -91,7 +99,7 @@ function readCookie()
 	
 	if( userId < 0 )
 	{
-		window.location.href = "index.html";
+//		window.location.href = "index.html";          DISABLED FOR TESTING PURPOSES
 	}
 	else
 	{
