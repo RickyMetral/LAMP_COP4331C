@@ -1,0 +1,27 @@
+<html>
+<head>
+	<title>COP 4331 LAMP Stack Contact Manager</title>
+	<script type="text/javascript" src="js/md5.js"></script>
+	<script type="text/javascript" src="js/code.js"></script>
+    <link href="css/styles.css" rel="stylesheet">	
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+</head>
+<body>
+<header>
+<div class ="containerHeader">
+<h1 id="title">COP 4331 LAMP Stack Contact Manager</h1>
+</div>
+</header>
+
+<div id="loginDiv">
+	<span id="inner-title">Create a Contact</span>
+	<input type="text" id="contactForm" placeholder="First Name" /><br />
+	<input type="text" id="contactForm" placeholder="Last Name" /><br />
+	<input type="number" id="contactForm" placeholder="(000)-000-0000"/><br />
+		<input type="email" id="contactForm" placeholder="Email"/><br />
+	<button type="button" id="registerButton" class="buttons2" onclick="doCreateContact();"> Create Contact </button>
+	<span id="loginResult"></span>
+</div>
+
+</body>
+</html>
