@@ -170,6 +170,12 @@ function searchContact()
     let srch = document.getElementById("searchText").value;
     // Clear previous results
     document.getElementById("contactSearchResult").innerHTML = "";
+
+	let tableBody = document.getElementById("contactTableBody");
+    let resultText = document.getElementById("contactSearchResult");
+	
+	resultText.innerHTML = "";
+    tableBody.innerHTML = "";
     
     let fullList = ""; 
     let tmp = {"search":srch, "userId":userId};
