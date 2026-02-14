@@ -5,6 +5,14 @@
 	<script type="text/javascript" src="js/code.js"></script>
     <link href="css/styles.css" rel="stylesheet">	
     <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+	
+	<script type="text/javascript">
+	document.addEventListener('DOMContentLoaded', function() 
+	{
+		readCookie();
+		loadContactToEdit();
+	}, false);
+	</script>
 </head>
 <body>
 <header>
@@ -14,13 +22,13 @@
 </header>
 
 <div id="loginDiv">
-	<span id="inner-title">Create a Contact</span>
-	<input type="text" id="contactForm" placeholder="First Name" /><br />
-	<input type="text" id="contactForm" placeholder="Last Name" /><br />
-	<input type="number" id="contactForm" placeholder="(000)-000-0000"/><br />
-		<input type="email" id="contactForm" placeholder="Email"/><br />
-	<button type="button" id="registerButton" class="buttons2" onclick="doCreateContact();"> Create Contact </button>
-	<span id="loginResult"></span>
+	<span id="inner-title">Edit a Contact</span>
+	<input type="text" id="firstNameInput" placeholder="First Name" /><br />
+	<input type="text" id="lastNameInput" placeholder="Last Name" /><br />
+	<input type="number" id="phone" placeholder="(000)-000-0000"/><br />
+		<input type="email" id="email" placeholder="Email"/><br />
+	<button type="button" id="registerButton" class="buttons2" onclick="editContact();"> Update Contact </button>
+	<span id="contactEditResult"></span>
 </div>
 
 </body>

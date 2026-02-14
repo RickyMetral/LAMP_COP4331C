@@ -9,6 +9,7 @@
 	document.addEventListener('DOMContentLoaded', function() 
 	{
 		readCookie();
+		displayContacts();
 	}, false);
 	</script>
 	
@@ -26,14 +27,14 @@
 <div id="accessUIDiv">
 	<br />
 
-	<input type="text" id="searchText" placeholder="Search Contact by Full Name"/>
-	<button type="button" id="searchColorButton" class="buttons2" onclick="searchColor();"> Search Contact </button><br />
-	<span id="colorSearchResult"></span>
-	<p id="colorList">
+	<input type="text" id="searchText" placeholder="Contact To Search For"/>
+	<button type="button" id="searchContactButton" class="buttons2" onclick="searchContact();"> Search Contact </button><br />
+	<span id="contactSearchResult"></span>
+	<p id="contactList">
 	</p><br /><br />
 
-	<button type="button" id="addColorButton" class="buttons2" onclick="doContact();"> Add Contact </button><br />
-	<span id="colorAddResult"></span>
+	<button type="button" id="addContactButton" class="buttons2" onclick="doContact();"> Add Contact </button><br />
+	<span id="contactAddResult"></span>
 </div>
 
 </body>
