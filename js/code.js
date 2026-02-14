@@ -98,7 +98,7 @@ function saveCookie()
 
 function readCookie()
 {
-	userId = -1;
+	currentUser.userId = -1;
 	let data = document.cookie;
 	let splits = data.split(",");
 	for(var i = 0; i < splits.length; i++) 
@@ -143,7 +143,7 @@ function addContact()
 	let newColor = document.getElementById("colorText").value;
 	document.getElementById("colorAddResult").innerHTML = "";
 
-	let tmp = {"color":newColor,"userId":userId};
+	let tmp = {"color":newColor,"userId":currentUser.userId};
 	let jsonPayload = JSON.stringify( tmp );
 
 	let url = urlBase + '/AddContact.' + extension;
@@ -176,7 +176,7 @@ function searchContact()
     document.getElementById("contactSearchResult").innerHTML = "";
     
     let fullList = ""; 
-    let tmp = {"search":srch, "userId":userId};
+    let tmp = {"search":srch, "userId":currentUser.userId};
     let jsonPayload = JSON.stringify( tmp );
 
     let url = urlBase + '/SearchContact.' + extension;
