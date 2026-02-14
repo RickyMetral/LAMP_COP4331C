@@ -1,7 +1,7 @@
 <?php
     $inData = getRequestInfo();
     
-    $searchResults = []; // Use an array instead of a string
+    $searchResults = []; 
     $searchCount = 0;
 
     $conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331");
@@ -11,8 +11,7 @@
     } 
     else
     {
-        // Change "Users" to "Contacts" if that's where your data is stored!
-        $stmt = $conn->prepare("SELECT FirstName, LastName, Phone, Email, UserID FROM Contacts WHERE (FirstName LIKE ? OR LastName LIKE ?) AND UserID=?");
+        $stmt = $conn->prepare("SELECT ID, FirstName, LastName, Phone, Email, UserID FROM Contacts WHERE (FirstName LIKE ? OR LastName LIKE ?) AND UserID=?");
 		$searchName = "%" . $inData["search"] . "%";
         $stmt->bind_param("ssi", $searchName, $searchName, $inData["userId"]);
         $stmt->execute();
@@ -21,6 +20,7 @@
         while($row = $result->fetch_assoc())
         {
             $searchResults[] = [
+				"ID" => $row["ID"],
 				"FirstName" => $row["FirstName"],
 				"LastName"  => $row["LastName"],
 				"Phone"     => $row["Phone"],
