@@ -12,22 +12,27 @@
     else
     {
         // Change "Users" to "Contacts" if that's where your data is stored!
-        $stmt = $conn->prepare("SELECT Name FROM Contacts WHERE Name LIKE ? AND UserID=?");
-        $searchName = "%" . $inData["search"] . "%";
-        $stmt->bind_param("si", $searchName, $inData["userId"]);
+        $stmt = $conn->prepare("SELECT FirstName, LastName, Phone, Email, UserID FROM Contacts WHERE (FirstName LIKE ? OR LastName LIKE ?) AND UserID=?");
+		$searchName = "%" . $inData["search"] . "%";
+        $stmt->bind_param("ssi", $searchName, $searchName, $inData["userId"]);
         $stmt->execute();
-        
         $result = $stmt->get_result();
         
         while($row = $result->fetch_assoc())
         {
-            $searchResults[] = $row["Name"];
+            $searchResults[] = [
+				"FirstName" => $row["FirstName"],
+				"LastName"  => $row["LastName"],
+				"Phone"     => $row["Phone"],
+				"Email"     => $row["Email"],
+				"UserId" => $row["UserID"]
+    		];
             $searchCount++;
         }
 
         $stmt->close();
         $conn->close();
-		
+
         if( $searchCount == 0 )
         {
             returnWithError( "No Records Found" );
