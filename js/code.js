@@ -66,6 +66,21 @@ function doRegister()
 
 }
 
+function doContact()
+{
+	window.location.href = "createContact.html";
+	
+	
+
+}
+
+function doCreateContact()
+{
+	// Add contact info to API Here
+	window.location.href = "contacts.html"
+	
+}
+
 function saveCookie()
 {
 	let minutes = 20;
