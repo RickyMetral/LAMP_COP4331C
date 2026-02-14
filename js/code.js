@@ -180,6 +180,7 @@ function searchContact() {
     let tmp = { search: srch, userId: currentUser.userId };
     let jsonPayload = JSON.stringify(tmp);
     let url = urlBase + '/SearchContact.' + extension;
+	console.log("Sending payload:", jsonPayload);
 
     let xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);
@@ -209,7 +210,7 @@ function searchContact() {
                 }
             }
         };
-		console.log("Sending payload:", jsonPayload);
+		
         xhr.send(jsonPayload);
     } catch (err) {
         resultText.innerHTML = err.message;
