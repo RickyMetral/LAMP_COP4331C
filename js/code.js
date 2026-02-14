@@ -169,21 +169,31 @@ function addContact()
 	
 }
 
-function searchContact()
-{
+function searchContact() {
     let srch = document.getElementById("searchText").value;
+<<<<<<< Updated upstream
     // Clear previous results
     document.getElementById("contactSearchResult").innerHTML = "";
     
     let fullList = ""; 
     let tmp = {"search":srch, "userId":currentUser.userId};
     let jsonPayload = JSON.stringify( tmp );
+=======
+    let tableBody = document.getElementById("contactTableBody");
+    let resultText = document.getElementById("contactSearchResult");
+>>>>>>> Stashed changes
 
+    tableBody.innerHTML = "";
+    resultText.innerHTML = "";
+
+    let tmp = { search: srch, userId: userId };
+    let jsonPayload = JSON.stringify(tmp);
     let url = urlBase + '/SearchContact.' + extension;
-    
+
     let xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
     try {
         xhr.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
@@ -194,30 +204,23 @@ function searchContact()
                     return;
                 }
 
-                // Loop through results and build table rows
                 for (let i = 0; i < jsonObject.results.length; i++) {
                     let contact = jsonObject.results[i];
-
-                    // Create a new row
                     let row = tableBody.insertRow();
-
-                    // Insert cells for the row
-                    let cell1 = row.insertCell(0);
-                    let cell2 = row.insertCell(1);
-                    let cell3 = row.insertCell(2);
-
-                    // Add content to the cells
-                    cell1.innerHTML = contact.FirstName + " " + contact.LastName;
-                    cell2.innerHTML = contact.Phone;
-                    cell3.innerHTML = contact.Email;
+                    
+                    row.insertCell(0).innerHTML = contact.FirstName + " " + contact.LastName;
+                    row.insertCell(1).innerHTML = contact.Phone;
+                    row.insertCell(2).innerHTML = contact.Email;
+                    
+                    // Added an Edit button to the row for functionality
+                    let editCell = row.insertCell(3);
+                    editCell.innerHTML = `<button class="editBtn" onclick="prepareEdit('${contact.FirstName}', '${contact.LastName}', '${contact.Phone}', '${contact.Email}', ${contact.ID})">Edit</button>`;
                 }
             }
         };
         xhr.send(jsonPayload);
-    }
-    catch(err)
-    {
-        document.getElementById("contactSearchResult").innerHTML = err.message;
+    } catch (err) {
+        resultText.innerHTML = err.message;
     }
 }
 
