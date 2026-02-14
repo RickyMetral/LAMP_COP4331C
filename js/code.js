@@ -209,6 +209,7 @@ function searchContact() {
                 }
             }
         };
+		console.log("Sending payload:", jsonPayload);
         xhr.send(jsonPayload);
     } catch (err) {
         resultText.innerHTML = err.message;
