@@ -178,7 +178,7 @@ function searchContact() {
     tableBody.innerHTML = "";
     resultText.innerHTML = "";
 
-    let tmp = { search: srch, userId: currentUser.userId };
+    let tmp = { "search": srch, "userId": currentUser.userId };
     let jsonPayload = JSON.stringify(tmp);
     let url = urlBase + '/SearchContact.' + extension;
 	console.log("Sending payload:", jsonPayload);
