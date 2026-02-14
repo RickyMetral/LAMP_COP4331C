@@ -1,9 +1,15 @@
 const urlBase = 'https://groupsixlampproject.app/LAMPAPI';
 const extension = 'php';
 
-let userId = 0;
-let firstName = "";
-let lastName = "";
+
+let currentContact = {
+	id : "",
+    firstName: "",
+    lastName: "",
+    phone: "",
+    email: "",
+    userId: 0
+};
 
 function doLogin()
 {
@@ -205,4 +211,63 @@ function searchContact()
 		document.getElementById("contactSearchResult").innerHTML = err.message;
 	}
 	
+}
+
+
+function editContact()
+{
+	let firstName = document.getElementsByClassName("firstNameField").value;
+	let lastName = document.getElementsByClassName("lastNameField").value;
+	let phone = document.getElementsByClassName("phoneField").value; 
+	let email = document.getElementsByClassName("emailField").value;
+
+	let tmp = {"ID":currentContact.id, "userId":currentContact.userId, "firstName": firstName, 
+		"lastName": lastName, "phone": phone, "email": email};
+
+	let jsonPayload = JSON.stringify( tmp );
+	let url = urlBase + '/EditContact.' + extension;
+	let xhr = new XMLHttpRequest();
+	xhr.open("POST", url, true);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+	try
+	{
+		xhr.onreadystatechange = function() 
+		{
+			if (this.readyState == 4 && this.status == 200) 
+			{
+				document.getElementById("contactSearchResult").innerHTML = "Contact(s) has been retrieved";
+				let jsonObject = JSON.parse( xhr.responseText );
+
+				if(jsonObject.error == ""){
+					document.getElementById("loginResult").innerHTML = "Contact Successfully Updated";
+				}
+				else{
+					document.getElementById("loginResult").innerHTML = jsonObject.error;
+				}
+			}
+		};
+		xhr.send(jsonPayload);
+	}
+	catch(err)
+	{
+		document.getElementById("loginResult").innerHTML = err.message;
+	}
+}
+
+
+function setCurrentContact(firstName, lastName, phone, email)
+{
+	currentContact.firstName = firstName;
+	currentContact.lastName = lastName;
+	currentContact.phone = phone;
+	currentContact.email = email;
+}
+
+function preFillContacts()
+{
+	document.getElementsByClassName("firstNameField").value = currentContact.firstName;
+	document.getElementsByClassName("lastNameField").value = currentContact.lastName; 
+	document.getElementsByClassName("phoneField").value = currentContact.phone;
+	document.getElementsByClassName("emailField").value = currentContact.email;
+
 }
