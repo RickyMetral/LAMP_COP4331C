@@ -244,14 +244,13 @@ function editContact()
 		{
 			if (this.readyState == 4 && this.status == 200) 
 			{
-				document.getElementById("contactSearchResult").innerHTML = "Contact(s) has been retrieved";
 				let jsonObject = JSON.parse( xhr.responseText );
 
 				if(jsonObject.error == ""){
-					document.getElementById("loginResult").innerHTML = "Contact Successfully Updated";
+					document.getElementById("editResult").innerHTML = "Contact Successfully Updated";
 				}
 				else{
-					document.getElementById("loginResult").innerHTML = jsonObject.error;
+					document.getElementById("editResult").innerHTML = jsonObject.error;
 				}
 			}
 		};
@@ -259,7 +258,7 @@ function editContact()
 	}
 	catch(err)
 	{
-		document.getElementById("loginResult").innerHTML = err.message;
+		document.getElementById("editResult").innerHTML = err.message;
 	}
 }
 
