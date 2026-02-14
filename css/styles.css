@@ -223,3 +223,21 @@ select{
     font-family: 'Ubuntu', sans-serif;
     color: #95060a;
 }
+
+#contactTable {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+#contactTable th, #contactTable td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+    color: #333;
+}
+
+#contactTable th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}

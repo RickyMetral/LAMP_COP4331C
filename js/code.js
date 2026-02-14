@@ -183,38 +183,33 @@ function searchContact()
     let xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-    try
-    {
-        xhr.onreadystatechange = function() 
-        {
-            if (this.readyState == 4 && this.status == 200) 
-            {
-                document.getElementById("contactSearchResult").innerHTML = "Contact(s) retrieved";
-                let jsonObject = JSON.parse( xhr.responseText );
-                
-                // If the PHP returned an error (like "No Records Found")
-                if (jsonObject.error)
-                {
-                    document.getElementById("contactSearchResult").innerHTML = jsonObject.error;
+    try {
+        xhr.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                let jsonObject = JSON.parse(xhr.responseText);
+
+                if (jsonObject.error && jsonObject.error.length > 0) {
+                    resultText.innerHTML = jsonObject.error;
                     return;
                 }
 
-                for( let i=0; i<jsonObject.results.length; i++ )
-                {
+                // Loop through results and build table rows
+                for (let i = 0; i < jsonObject.results.length; i++) {
                     let contact = jsonObject.results[i];
-                    
-                    // Access individual properties returned by your PHP
-                    fullList += contact.FirstName + " " + contact.LastName + 
-                               " | " + contact.Phone + " | " + contact.Email;
-                    
-                    if( i < jsonObject.results.length - 1 )
-                    {
-                        fullList += "<br />";
-                    }
+
+                    // Create a new row
+                    let row = tableBody.insertRow();
+
+                    // Insert cells for the row
+                    let cell1 = row.insertCell(0);
+                    let cell2 = row.insertCell(1);
+                    let cell3 = row.insertCell(2);
+
+                    // Add content to the cells
+                    cell1.innerHTML = contact.FirstName + " " + contact.LastName;
+                    cell2.innerHTML = contact.Phone;
+                    cell3.innerHTML = contact.Email;
                 }
-                
-                // Targeted by ID 'colorList' instead of TagName for reliability
-                document.getElementById("colorList").innerHTML = fullList;
             }
         };
         xhr.send(jsonPayload);
