@@ -42,7 +42,7 @@ function doLogin()
 				let jsonObject = JSON.parse( xhr.responseText );
 				currentUser.userId = jsonObject.id;
 		
-				if( userId < 1 )
+				if( currentUser.userId < 1 )
 				{		
 					document.getElementById("loginResult").innerHTML = "User/Password combination incorrect";
 					return;
