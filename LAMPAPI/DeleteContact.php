@@ -14,10 +14,16 @@
 	{
         $stmt = $conn->prepare("DELETE FROM Contacts WHERE ID = ? AND UserID = ? "); 
         $stmt->bind_param("ss", $id, $userId);
-		$stmt->execute();
-		$stmt->close();
-		$conn->close();
-		returnWithError("");
+		if($stmt->execute()){
+			$stmt->close();
+			$conn->close();
+			returnWithError("");
+		}
+		else{
+			$stmt->close();
+			$conn->close();
+			returnWithError("Could Not Delete Contact");
+		}
 	}
 
 	function getRequestInfo()

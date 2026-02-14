@@ -19,10 +19,16 @@
 	{
         $stmt = $conn->prepare("UPDATE Contacts SET FirstName = ?, LastName = ?, Phone = ?, Email = ? WHERE ID = ? AND UserID = ?");
         $stmt->bind_param("ssssii", $firstName, $lastName, $phone, $email, $id, $userId);
-		$stmt->execute();
-		$stmt->close();
-		$conn->close();
-		returnWithError("");
+		if($stmt->execute()){
+			$stmt->close();
+			$conn->close();
+			returnWithError("");
+		}
+		else{
+			$stmt->close();
+			$conn->close();
+			returnWithError("Could Not Edit Contact");
+		}
 	}
 
 	function getRequestInfo()
