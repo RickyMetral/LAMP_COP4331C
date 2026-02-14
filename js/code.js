@@ -174,11 +174,9 @@ function searchContact() {
     let tableBody = document.getElementById("contactTableBody");
     let resultText = document.getElementById("contactSearchResult");
 
+    tableBody.innerHTML = "";
     resultText.innerHTML = "";
 
-
-
-    tableBody.innerHTML = "";
     let tmp = { search: srch, userId: userId };
     let jsonPayload = JSON.stringify(tmp);
     let url = urlBase + '/SearchContact.' + extension;
