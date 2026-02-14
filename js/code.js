@@ -134,10 +134,15 @@ function doLogout()
 
 function addContact()
 {
-	let newColor = document.getElementById("colorText").value;
-	document.getElementById("colorAddResult").innerHTML = "";
+	document.getElementById("createContactResult").innerHTML = "";
 
-	let tmp = {"color":newColor,"userId":currentUser.userId};
+	let firstName = document.getElementsByClassName("firstNameField").value;
+	let lastName = document.getElementsByClassName("lastNameField").value;
+	let phone = document.getElementsByClassName("phoneField").value; 
+	let email = document.getElementsByClassName("emailField").value;
+
+	let tmp = {"userId":currentContact.userId, "firstName": firstName, 
+		"lastName": lastName, "phone": phone, "email": email};
 	let jsonPayload = JSON.stringify( tmp );
 
 	let url = urlBase + '/AddContact.' + extension;
@@ -222,6 +227,8 @@ function searchContact() {
 //Reads all fields and makes API requeest to update contact
 function editContact()
 {
+	document.getElementById("editResult").innerHTML = "";
+
 	let firstName = document.getElementsByClassName("firstNameField").value;
 	let lastName = document.getElementsByClassName("lastNameField").value;
 	let phone = document.getElementsByClassName("phoneField").value; 
