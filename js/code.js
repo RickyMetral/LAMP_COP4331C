@@ -68,17 +68,11 @@ function doLogin()
 function doRegister()
 {
 	window.location.href = "register.html";
-	
-	
-
 }
 
 function doContact()
 {
 	window.location.href = "createContact.html";
-	
-	
-
 }
 
 function doCreateContact()
@@ -157,14 +151,21 @@ function addContact()
 		{
 			if (this.readyState == 4 && this.status == 200) 
 			{
-				document.getElementById("colorAddResult").innerHTML = "Color has been added";
+				let jsonObject = JSON.parse( xhr.responseText );
+
+				if(jsonObject.error == ""){
+					document.getElementById("createContactResult").innerHTML = "Contact has been added";
+				}
+				else{
+					document.getElementById("createContactResult").innerHTML = "Contact could not be added";
+				}
 			}
 		};
 		xhr.send(jsonPayload);
 	}
 	catch(err)
 	{
-		document.getElementById("colorAddResult").innerHTML = err.message;
+		document.getElementById("createContactResult").innerHTML = err.message;
 	}
 	
 }
