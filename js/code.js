@@ -170,47 +170,59 @@ function addContact()
 
 function searchContact()
 {
-	let srch = document.getElementById("searchText").value;
-	document.getElementById("contactSearchResult").innerHTML = "";
-	
-	let colorList = "";
+    let srch = document.getElementById("searchText").value;
+    // Clear previous results
+    document.getElementById("contactSearchResult").innerHTML = "";
+    
+    let fullList = ""; 
+    let tmp = {"search":srch, "userId":userId};
+    let jsonPayload = JSON.stringify( tmp );
 
-	let tmp = {"search":srch, "userId":userId};
-	let jsonPayload = JSON.stringify( tmp );
+    let url = urlBase + '/SearchContact.' + extension;
+    
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    try
+    {
+        xhr.onreadystatechange = function() 
+        {
+            if (this.readyState == 4 && this.status == 200) 
+            {
+                document.getElementById("contactSearchResult").innerHTML = "Contact(s) retrieved";
+                let jsonObject = JSON.parse( xhr.responseText );
+                
+                // If the PHP returned an error (like "No Records Found")
+                if (jsonObject.error)
+                {
+                    document.getElementById("contactSearchResult").innerHTML = jsonObject.error;
+                    return;
+                }
 
-	let url = urlBase + '/SearchContact.' + extension;
-	
-	let xhr = new XMLHttpRequest();
-	xhr.open("POST", url, true);
-	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-	try
-	{
-		xhr.onreadystatechange = function() 
-		{
-			if (this.readyState == 4 && this.status == 200) 
-			{
-				document.getElementById("contactSearchResult").innerHTML = "Contact(s) has been retrieved";
-				let jsonObject = JSON.parse( xhr.responseText );
-				
-				for( let i=0; i<jsonObject.results.length; i++ )
-				{
-					colorList += jsonObject.results[i];
-					if( i < jsonObject.results.length - 1 )
-					{
-						colorList += "<br />\r\n";
-					}
-				}
-				
-				document.getElementsByTagName("p")[0].innerHTML = colorList;
-			}
-		};
-		xhr.send(jsonPayload);
-	}
-	catch(err)
-	{
-		document.getElementById("contactSearchResult").innerHTML = err.message;
-	}
-	
+                for( let i=0; i<jsonObject.results.length; i++ )
+                {
+                    let contact = jsonObject.results[i];
+                    
+                    // Access individual properties returned by your PHP
+                    fullList += contact.FirstName + " " + contact.LastName + 
+                               " | " + contact.Phone + " | " + contact.Email;
+                    
+                    if( i < jsonObject.results.length - 1 )
+                    {
+                        fullList += "<br />";
+                    }
+                }
+                
+                // Targeted by ID 'colorList' instead of TagName for reliability
+                document.getElementById("colorList").innerHTML = fullList;
+            }
+        };
+        xhr.send(jsonPayload);
+    }
+    catch(err)
+    {
+        document.getElementById("contactSearchResult").innerHTML = err.message;
+    }
 }
 
 
