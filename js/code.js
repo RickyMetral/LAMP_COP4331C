@@ -171,23 +171,13 @@ function addContact()
 
 function searchContact() {
     let srch = document.getElementById("searchText").value;
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
     // Clear previous results
     document.getElementById("contactSearchResult").innerHTML = "";
-    
-    let fullList = ""; 
-    let tmp = {"search":srch, "userId":currentUser.userId};
-    let jsonPayload = JSON.stringify( tmp );
-=======
-    let tableBody = document.getElementById("contactTableBody");
-    let resultText = document.getElementById("contactSearchResult");
->>>>>>> Stashed changes
-=======
-    let tableBody = document.getElementById("contactTableBody");
-    let resultText = document.getElementById("contactSearchResult");
->>>>>>> Stashed changes
 
+	let tableBody = document.getElementById("contactTableBody");
+    let resultText = document.getElementById("contactSearchResult");
+	
+	resultText.innerHTML = "";
     tableBody.innerHTML = "";
     resultText.innerHTML = "";
 
