@@ -1,7 +1,11 @@
 const urlBase = 'https://groupsixlampproject.app/LAMPAPI';
 const extension = 'php';
 
-
+let currentUser = {
+	id : "",
+    firstName: "",
+    lastName: "",
+}
 let currentContact = {
 	id : "",
     firstName: "",
@@ -36,16 +40,16 @@ function doLogin()
 			if (this.readyState == 4 && this.status == 200) 
 			{
 				let jsonObject = JSON.parse( xhr.responseText );
-				currentContact.userId = jsonObject.id;
+				currentUser.userId = jsonObject.id;
 		
-				if( currentContact.userId < 1 )
+				if( userId < 1 )
 				{		
 					document.getElementById("loginResult").innerHTML = "User/Password combination incorrect";
 					return;
 				}
 		
-				currentContact.firstName = jsonObject.firstName;
-				currentContact.lastName = jsonObject.lastName;
+				currentUser.firstName = jsonObject.firstName;
+				currentUser.lastName = jsonObject.lastName;
 
 				saveCookie();
 	
@@ -89,7 +93,7 @@ function saveCookie()
 	let minutes = 20;
 	let date = new Date();
 	date.setTime(date.getTime()+(minutes*60*1000));	
-	document.cookie = "firstName=" + firstName + ",lastName=" + lastName + ",userId=" + userId + ";expires=" + date.toGMTString();
+	document.cookie = "firstName=" + currentUser.firstName + ",lastName=" + currentUser.lastName + ",userId=" + currentUser.userId + ";expires=" + date.toGMTString();
 }
 
 function readCookie()
@@ -103,33 +107,33 @@ function readCookie()
 		let tokens = thisOne.split("=");
 		if( tokens[0] == "firstName" )
 		{
-			firstName = tokens[1];
+			currentUser.firstName = tokens[1];
 		}
 		else if( tokens[0] == "lastName" )
 		{
-			lastName = tokens[1];
+			currentUser.lastName = tokens[1];
 		}
 		else if( tokens[0] == "userId" )
 		{
-			userId = parseInt( tokens[1].trim() );
+			currentUser.userId = parseInt( tokens[1].trim() );
 		}
 	}
 	
-	if( userId < 0 )
+	if( currentUser.userId < 0 )
 	{
-//		window.location.href = "index.html";          DISABLED FOR TESTING PURPOSES
+		// window.location.href = "index.html";          DISABLED FOR TESTING PURPOSES
 	}
 	else
 	{
-//		document.getElementById("userName").innerHTML = "Logged in as " + firstName + " " + lastName;
+		document.getElementById("userName").innerHTML = "Logged in as " + currentUser.firstName + " " + currentUser.lastName;
 	}
 }
 
 function doLogout()
 {
-	userId = 0;
-	firstName = "";
-	lastName = "";
+	currentUser.userId = 0;
+	currentUser.firstName = "";
+	currentUser.lastName = "";
 	document.cookie = "firstName= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
 	window.location.href = "index.html";
 }
@@ -170,12 +174,6 @@ function searchContact()
     let srch = document.getElementById("searchText").value;
     // Clear previous results
     document.getElementById("contactSearchResult").innerHTML = "";
-
-	let tableBody = document.getElementById("contactTableBody");
-    let resultText = document.getElementById("contactSearchResult");
-	
-	resultText.innerHTML = "";
-    tableBody.innerHTML = "";
     
     let fullList = ""; 
     let tmp = {"search":srch, "userId":userId};
@@ -224,6 +222,7 @@ function searchContact()
 }
 
 
+//Reads all fields and makes API requeest to update contact
 function editContact()
 {
 	let firstName = document.getElementsByClassName("firstNameField").value;
@@ -231,7 +230,7 @@ function editContact()
 	let phone = document.getElementsByClassName("phoneField").value; 
 	let email = document.getElementsByClassName("emailField").value;
 
-	let tmp = {"ID":currentContact.id, "userID":currentContact.userId, "firstName": firstName, 
+	let tmp = {"ID":currentContact.id, "userId":currentContact.userId, "firstName": firstName, 
 		"lastName": lastName, "phone": phone, "email": email};
 
 	let jsonPayload = JSON.stringify( tmp );
