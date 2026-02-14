@@ -1,68 +1,65 @@
 <?php
+    $inData = getRequestInfo();
+    
+    $searchResults = []; // Use an array instead of a string
+    $searchCount = 0;
 
-	$inData = getRequestInfo();
-	
-	$searchResults = "";
-	$searchCount = 0;
+    $conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331");
+    if ($conn->connect_error) 
+    {
+        returnWithError( $conn->connect_error );
+    } 
+    else
+    {
+        // Change "Users" to "Contacts" if that's where your data is stored!
+        $stmt = $conn->prepare("SELECT Name FROM Contacts WHERE Name LIKE ? AND UserID=?");
+        $searchName = "%" . $inData["search"] . "%";
+        $stmt->bind_param("si", $searchName, $inData["userId"]);
+        $stmt->execute();
+        
+        $result = $stmt->get_result();
+        
+        while($row = $result->fetch_assoc())
+        {
+            $searchResults[] = $row["Name"];
+            $searchCount++;
+        }
 
-	$conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331");
-	if ($conn->connect_error) 
-	{
-		returnWithError( $conn->connect_error );
-	} 
-	else
-	{
-		$stmt = $conn->prepare("select Name from Users where Name like ? and UserID=?");
-		$FirstName = "%" . $inData["search"] . "%";
-		$stmt->bind_param("si", $FirstName, $inData["userId"]);
-		$stmt->execute();
+        $stmt->close();
+        $conn->close();
 		
-		$result = $stmt->get_result();
-		
-		while($row = $result->fetch_assoc())
-		{
-			if( $searchCount > 0 )
-			{
-				$searchResults .= ",";
-			}
-			$searchCount++;
-			$searchResults .= '"' . $row["Name"] . '"';
-		}
-		
-		if( $searchCount == 0 )
-		{
-			returnWithError( "No Records Found" );
-		}
-		else
-		{
-			returnWithInfo( $searchResults );
-		}
-		
-		$stmt->close();
-		$conn->close();
-	}
+        if( $searchCount == 0 )
+        {
+            returnWithError( "No Records Found" );
+        }
+        else
+        {
+            returnWithInfo( $searchResults );
+        }
+        
 
-	function getRequestInfo()
-	{
-		return json_decode(file_get_contents('php://input'), true);
-	}
+    }
 
-	function sendResultInfoAsJson( $obj )
-	{
-		header('Content-type: application/json');
-		echo $obj;
-	}
-	
-	function returnWithError( $err )
-	{
-		$retValue = '{"id":0,"firstName":"","lastName":"","error":"' . $err . '"}';
-		sendResultInfoAsJson( $retValue );
-	}
-	
-	function returnWithInfo( $searchResults )
-	{
-		$retValue = '{"results":[' . $searchResults . '],"error":""}';
-		sendResultInfoAsJson( $retValue );
-	}
-	
+    function getRequestInfo()
+    {
+        return json_decode(file_get_contents('php://input'), true);
+    }
+
+    function sendResultInfoAsJson( $obj )
+    {
+        header('Content-type: application/json');
+        echo json_encode($obj); // Use json_encode for safety
+    }
+    
+    function returnWithError( $err )
+    {
+        $retValue = array("results" => [], "error" => $err);
+        sendResultInfoAsJson( $retValue );
+    }
+    
+    function returnWithInfo( $searchResults )
+    {
+        $retValue = array("results" => $searchResults, "error" => "");
+        sendResultInfoAsJson( $retValue );
+    }
 ?>
