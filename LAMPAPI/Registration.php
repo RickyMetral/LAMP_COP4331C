@@ -4,7 +4,7 @@
 	$inData = getRequestInfo();
 	
 	$firstName = $inData["firstName"];
-	$lastName = $inData["lasName"];
+	$lastName = $inData["lastName"];
     $login = $inData["login"];
     $password = $inData["password"];
 
@@ -21,16 +21,17 @@
         
         if($stmt->execute())   //Runs query against sql table
         {
+			$stmt->close();
+			$conn->close();
     	    returnWithError("");
 		}
 		else
 		{
+			$stmt->close();
+			$conn->close();
 			returnWithError("Registration Failed: User might already exist");
 		}
-        
 
-		$stmt->close();
-		$conn->close();
 	}
 	
 	function getRequestInfo()
@@ -46,7 +47,8 @@
 	
 	function returnWithError( $err )
 	{
-		$retValue = '{"error":"' . $err . '"}';
+		$retValue = '{"error":"' . $err . '"
+                     "fields": "firstName, lastName, login, password"}';
 		sendResultInfoAsJson( $retValue );
 	}
 	
