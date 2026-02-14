@@ -136,7 +136,7 @@ function addContact()
 	let newColor = document.getElementById("colorText").value;
 	document.getElementById("colorAddResult").innerHTML = "";
 
-	let tmp = {color:newColor,userId,userId};
+	let tmp = {"color":newColor,"userId":userId};
 	let jsonPayload = JSON.stringify( tmp );
 
 	let url = urlBase + '/AddContact.' + extension;
@@ -165,11 +165,11 @@ function addContact()
 function searchContact()
 {
 	let srch = document.getElementById("searchText").value;
-	document.getElementById("colorSearchResult").innerHTML = "";
+	document.getElementById("contactSearchResult").innerHTML = "";
 	
 	let colorList = "";
 
-	let tmp = {search:srch,userId:userId};
+	let tmp = {"search":srch, "userId":userId};
 	let jsonPayload = JSON.stringify( tmp );
 
 	let url = urlBase + '/SearchContact.' + extension;
