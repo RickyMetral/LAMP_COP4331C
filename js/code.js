@@ -13,9 +13,6 @@ let currentContact = {
 
 function doLogin()
 {
-	userId = 0;
-	firstName = "";
-	lastName = "";
 	
 	let login = document.getElementById("loginName").value;
 	let password = document.getElementById("loginPassword").value;
@@ -39,7 +36,7 @@ function doLogin()
 			if (this.readyState == 4 && this.status == 200) 
 			{
 				let jsonObject = JSON.parse( xhr.responseText );
-				userId = jsonObject.id;
+				currentContact.userId = jsonObject.id;
 		
 				if( userId < 1 )
 				{		
@@ -47,8 +44,8 @@ function doLogin()
 					return;
 				}
 		
-				firstName = jsonObject.firstName;
-				lastName = jsonObject.lastName;
+				currentContact.firstName = jsonObject.firstName;
+				currentContact.lastName = jsonObject.lastName;
 
 				saveCookie();
 	
@@ -228,7 +225,7 @@ function editContact()
 	let phone = document.getElementsByClassName("phoneField").value; 
 	let email = document.getElementsByClassName("emailField").value;
 
-	let tmp = {"ID":currentContact.id, "userId":currentContact.userId, "firstName": firstName, 
+	let tmp = {"ID":currentContact.id, "userID":currentContact.userId, "firstName": firstName, 
 		"lastName": lastName, "phone": phone, "email": email};
 
 	let jsonPayload = JSON.stringify( tmp );
