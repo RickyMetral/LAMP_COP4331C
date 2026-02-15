@@ -67,6 +67,51 @@ function doLogin()
 
 }
 
+function doRegisterUser() {
+    let firstName = document.getElementById("regFirstName").value;
+    let lastName = document.getElementById("regLastName").value;
+    let login = document.getElementById("regLogin").value;
+    let password = document.getElementById("regPassword").value;
+	let hash = md5(password);
+
+    document.getElementById("regResult").innerHTML = "";
+
+    let tmp = {
+        firstName: firstName,
+        lastName: lastName,
+        login: login,
+        password: hash
+    };
+    
+    let jsonPayload = JSON.stringify(tmp);
+    let url = urlBase + '/Registration.' + extension; 
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+    try {
+        xhr.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                let jsonObject = JSON.parse(xhr.responseText);
+
+                if (jsonObject.error != "" && jsonObject.error.length > 0) {
+                    document.getElementById("regResult").innerHTML = jsonObject.error;
+                } else {
+                    document.getElementById("regResult").innerHTML = "Registration Successful!";
+                    // Send them to the login page (index.html) after 1 second
+                    setTimeout(function() {
+                        window.location.href = "index.html";
+                    }, 1200);
+                }
+            }
+        };
+        xhr.send(jsonPayload);
+    } catch (err) {
+        document.getElementById("regResult").innerHTML = err.message;
+    }
+}
+
 function doRegister()
 {
 	window.location.href = "register.html";
