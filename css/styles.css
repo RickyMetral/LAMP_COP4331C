@@ -1,18 +1,41 @@
+@font-face {
+    font-family: 'MonsterAG';
+    src: url('../fonts/Monster\ AG.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+:root {
+    --monster-blue: #50a9d9;
+    --monster-teal: #098e9d;
+    --monster-green: #8bc34a;
+    --monster-light: #dbe8ea;
+    --monster-purple: #5944a6;
+    --monster-light-purple: #967de1;
+}
+
 body 
-{
-    background: #141414;
-	background: -moz-linear-gradient(left, #141414 0%, #202020 49%, #141414 100%);
+{   
+    background: #afcfd2;
+    /* background: #eaf3e0; */
+	/* background: -moz-linear-gradient(left, #141414 0%, #202020 49%, #141414 100%);
 	background: -webkit-linear-gradient(left, #141414 0%, #202020 49%, #141414 100%);
-	background: linear-gradient(to right, #141414 0%, #202020 49%, #141414 100%);
-	margin: 0;
+	background: linear-gradient(to right, var(--monster-teal) 0%, var(--monster-blue) 49%, var(--monster-teal) 100%); */
+    /*background: linear-gradient(to right, #141414 0%, #202020 49%, #141414 100%); */
+	font-family: 'MonsterAG', sans-serif;
+    letter-spacing: 2px;
+    margin: 0;
 }
 
 header {
 	background: #4A1212;
 	background: -moz-linear-gradient(left, #4A1212 0%, #631818 49%, #4A1212 100%);
 	background: -webkit-linear-gradient(left, #4A1212 0%, #631818 49%, #4A1212 100%);
-	background: linear-gradient(to right, #4A1212 0%, #631818 49%, #4A1212 100%);
-	color: white;
+	/* background: linear-gradient(to right, #4A1212 0%, #631818 49%, #4A1212 100%); */
+    background: linear-gradient(to right, var(--monster-purple) 0%, var(--monster-light-purple) 49%, var(--monster-purple) 100%);
+	/* background: linear-gradient(to right, var(--monster-teal) 0%, var(--monster-blue) 49%, var(--monster-teal) 100%); */
+	
+    color: white;
 	text-align: center;
 	margin-bottom: 2%;
 	width: 100%;
@@ -31,7 +54,7 @@ header {
 	left: 25%;
     font-size: 250%;
     text-align: center;
-    font-family: 'Ubuntu', sans-serif;
+    font-family: 'MonsterAG', sans-serif;
     color: #FFFFFF;
 	/* border: 10px solid white; TESTING PURPOSES ONLY */
 	width: 50%;
@@ -44,10 +67,13 @@ header {
     margin-left: 30%;
     padding: 25px;
 	border-radius: 10px;
-    background: #4A4A4A;
-	background: -moz-linear-gradient(left, #4A4A4A 0%, #585858 49%, #4A4A4A 100%);
-	background: -webkit-linear-gradient(left, #4A4A4A 0%, #585858 49%, #4A4A4A 100%);
-	background: linear-gradient(to right, #4A4A4A 0%, #585858 49%, #4A4A4A 100%);
+    /* background: #ffffff; */
+    background: var(--monster-light);
+    /* background: var(--monster-light-purple); */
+	/* background: -moz-linear-gradient(left, var(--monster-purple) 0%, var(--monster-light-purple) 49%, var(--monster-purple) 100%);
+	background: -webkit-linear-gradient(left, var(--monster-purple) 0%, var(--monster-light-purple) 49%, var(--monster-purple) 100%); */
+	/* background: linear-gradient(to right, var(--monster-light-purple) 0%, var(--monster-light) 49%, var(--monster-light-purple) 100%); */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); 
 }
 
 #loggedInDiv
@@ -70,10 +96,12 @@ header {
     margin-left: 25%;
     padding: 25px;
 	border-radius: 10px;
-    background: #4A4A4A;
-	background: -moz-linear-gradient(left, #4A4A4A 0%, #585858 49%, #4A4A4A 100%);
+    /* background: #4A4A4A; */
+	/* background: -moz-linear-gradient(left, #4A4A4A 0%, #585858 49%, #4A4A4A 100%);
 	background: -webkit-linear-gradient(left, #4A4A4A 0%, #585858 49%, #4A4A4A 100%);
-	background: linear-gradient(to right, #4A4A4A 0%, #585858 49%, #4A4A4A 100%);
+	background: linear-gradient(to right, #4A4A4A 0%, #585858 49%, #4A4A4A 100%); */
+    background: var(--monster-light);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
 #logoutButton {
@@ -85,41 +113,50 @@ header {
 	justify-content: center;
 	align-items: center;
 	border-radius: 10px;
+    border-color: #3e2d7a;
 	/* border: 5px solid blue; TESTING PURPOSES ONLY */
 }
 
 .buttons
 {
+    background-color: #ffffff;
+    color: var(--monster-green);
     font-size: 30px;
     border-radius: 10px;
+    border-color: #3e2d7a;
     width: 20%;
     margin-left: 20%;
-    font-family: 'Ubuntu', sans-serif;
+    /*font-family: 'Ubuntu', sans-serif; */
+    font-family: 'MonsterAG', sans-serif;
 }
 
 .buttons2
 {
     font-size: 30px;
+    color: var(--monster-green);
+    background-color: #ffffff;
     border-radius: 10px;
+    border-color: #3e2d7a;
     width: 40%;
     margin-left: 30%;
-    font-family: 'Ubuntu', sans-serif;
+    font-family: 'MonsterAG', sans-serif;
 }
 
 .buttons:hover{
-    background-color: #00d5124f;
+    background-color: #0f9500c7;
     color: #FFFFFF;
     opacity: 50%;
 }
 
 .buttons2:hover{
-    background-color: #00d5124f;
+    background-color: #0f9500c7;
     color: #FFFFFF;
     opacity: 50%;
 }
 
 #loginName
 {
+    border-radius: 10px;
 	font-size: 30px;
 }
 #loginPassword
@@ -128,42 +165,53 @@ header {
 }
 #contactForm
 {
+    border-radius: 10px;
 	font-size: 30px;
 }
 #searchText
 {
+    border-radius: 10px;
 	font-size: 30px;
 }
 #colorText
 {
 	font-size: 30px;
 }
+#regFirstName, #regLastName, #regLogin, #regPassword
+{
+    border-radius: 10px;
+    font-size: 30px;
+}
 
 input[type="text"],input[type="password"]{
-    border-radius: 0px;
+    border-radius: 10px;
+    border-color: #3e2d7a;
     text-align: center;
     width: 50%;
     margin-left: 25%;
     margin-bottom: 2%;
-    font-family: 'Ubuntu', sans-serif;
+    font-family: 'MonsterAG', sans-serif;
+    color: #3e2d7a;
 }
 
 input[type="text"],input[type="number"]{
     border-radius: 0px;
+    border-color: #3e2d7a;
     text-align: center;
     width: 50%;
     margin-left: 25%;
     margin-bottom: 2%;
-    font-family: 'Ubuntu', sans-serif;
+    font-family: 'MonsterAG', sans-serif;
 }
 
 input[type="text"],input[type="email"]{
     border-radius: 0px;
+    border-color: #3e2d7a;
     text-align: center;
     width: 50%;
     margin-left: 25%;
     margin-bottom: 2%;
-    font-family: 'Ubuntu', sans-serif;
+    font-family: 'MonsterAG', sans-serif;
 }
 
 #inner-title{
@@ -173,8 +221,8 @@ input[type="text"],input[type="email"]{
     text-align: center;
     margin-left: 5%;
     margin-bottom: 2%;
-    font-family: 'Ubuntu', sans-serif;
-    color: #ffffff;
+    font-family: 'MonsterAG', sans-serif;
+    color: #3e2d7a;
 }
 
 #loginResult{
@@ -184,7 +232,7 @@ input[type="text"],input[type="email"]{
     text-align: center;
     margin-left: 5%;
     margin-bottom: 2%;
-    font-family: 'Ubuntu', sans-serif;
+    font-family: 'MonsterAG', sans-serif;
     color: #95060a;
 }
 
@@ -205,7 +253,7 @@ select{
     margin-left: 35%;
     margin-top: 2%;
     font-size: 0.75em;
-    font-family: 'Ubuntu', sans-serif;
+    font-family: 'MonsterAG', sans-serif;
 }
 
 #colorSearchResult{
@@ -220,7 +268,7 @@ select{
     margin-left: 5%;
     margin-top: 2%;
     margin-bottom: 1%;
-    font-family: 'Ubuntu', sans-serif;
+    font-family: 'MonsterAG', sans-serif;
     color: #95060a;
 }
 
@@ -239,7 +287,10 @@ select{
 
 #contactTable th {
     background-color: #f2f2f2;
-    font-weight: bold;
+    /* font-weight: bold; */
+    font-family: 'MonsterAG', sans-serif;
+    color: #3e2d7a;
+    font-size: larger;
 }
 
 .editBtn, .deleteBtn {
@@ -247,7 +298,7 @@ select{
     padding: 6px 12px;
     cursor: pointer;
     border-radius: 4px;
-    font-family: 'Ubuntu', sans-serif;
+    font-family: 'MonsterAG', sans-serif;
     font-size: 14px;
     transition: background-color 0.3s ease;
     min-width: 70px;
@@ -256,12 +307,13 @@ select{
 
 /* Edit Button Styling (Blue) */
 .editBtn {
-    background-color: #3498db;
+    background-color: var(--monster-blue);
     color: white;
 }
 
 .editBtn:hover {
-    background-color: #2980b9;
+    background-color: var(--monster-teal);
+    /* background-color: #2980b9; */
 }
 
 /* Delete Button Styling (Red) */
