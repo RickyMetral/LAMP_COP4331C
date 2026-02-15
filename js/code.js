@@ -234,6 +234,9 @@ function addContact()
 
 				if(jsonObject.error == ""){
 					document.getElementById("createContactResult").innerHTML = "Contact has been added";
+					setTimeout(function() {
+           				window.location.href = "contacts.html";
+    				}, 500);
 				}
 				else{
 					document.getElementById("createContactResult").innerHTML = "Contact could not be added";
@@ -413,7 +416,7 @@ function editContact()
 					document.getElementById("editResult").innerHTML = "Contact Successfully Updated";
 					setTimeout(function() {
            				window.location.href = "contacts.html";
-    				}, 1000);
+    				}, 500);
 				}
 				else{
 					document.getElementById("editResult").innerHTML = jsonObject.error;
