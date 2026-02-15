@@ -2,10 +2,11 @@ const urlBase = 'https://groupsixlampproject.app/LAMPAPI';
 const extension = 'php';
 
 let currentUser = {
-	userId : 0,
+    userId: 0,
     firstName: "",
-    lastName: "",
-}
+    lastName: ""
+};
+
 
 let currentContact = {
 	id : "",
@@ -14,6 +15,32 @@ let currentContact = {
     phone: "",
     email: "",
     userId: 0
+};
+
+window.onload = function() {
+    let data = localStorage.getItem("currentUser");
+    if(data) {
+        let user = JSON.parse(data);
+        currentUser.userId = user.userId;
+        currentUser.firstName = user.firstName;
+        currentUser.lastName = user.lastName;
+    } else {
+		let currentPage = window.location.pathname;
+        if (!currentPage.includes("index.html") && !currentPage.includes("register.html")) {
+            window.location.href = "index.html";
+        }
+    }
+
+    data = localStorage.getItem("selectedContact");
+    if(data) {
+        let contact = JSON.parse(data);
+        currentContact.userId = contact.userId;
+        currentContact.firstName = contact.firstName;
+        currentContact.lastName = contact.lastName;
+        currentContact.phone = contact.phone;
+        currentContact.email = contact.email;
+        currentContact.id = contact.id;
+    }
 };
 
 function doLogin()
@@ -53,7 +80,7 @@ function doLogin()
 				currentUser.firstName = jsonObject.firstName;
 				currentUser.lastName = jsonObject.lastName;
 
-				saveCookie();
+    			localStorage.setItem("currentUser", JSON.stringify(currentUser));
 	
 				window.location.href = "contacts.html";
 			}
