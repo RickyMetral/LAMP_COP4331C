@@ -2,7 +2,7 @@ const urlBase = 'https://groupsixlampproject.app/LAMPAPI';
 const extension = 'php';
 
 let currentUser = {
-	id : "",
+	userId : 0,
     firstName: "",
     lastName: "",
 }
@@ -41,6 +41,7 @@ function doLogin()
 			{
 				let jsonObject = JSON.parse( xhr.responseText );
 				currentUser.userId = jsonObject.id;
+				currentContact.userId = currentUser.userId;
 		
 				if( currentUser.userId < 1 )
 				{		
@@ -136,10 +137,10 @@ function addContact()
 {
 	document.getElementById("createContactResult").innerHTML = "";
 
-	let firstName = document.getElementsByClassName("firstNameField").value;
-	let lastName = document.getElementsByClassName("lastNameField").value;
-	let phone = document.getElementsByClassName("phoneField").value; 
-	let email = document.getElementsByClassName("emailField").value;
+	let firstName = document.getElementsByClassName("firstNameField")[0].value;
+	let lastName = document.getElementsByClassName("lastNameField")[0].value;
+	let phone = document.getElementsByClassName("phoneField")[0].value; 
+	let email = document.getElementsByClassName("emailField")[0].value;
 
 	let tmp = {"userId":currentContact.userId, "firstName": firstName, 
 		"lastName": lastName, "phone": phone, "email": email};
@@ -225,19 +226,18 @@ function searchContact() {
 
 function prepareEdit(firstName, lastName, phone, email, contactId) {
     // We create a temporary object to hold the contact we clicked on
-    let selectedContact = {
-        firstName: firstName,
-        lastName: lastName,
-        phone: phone,
-        email: email,
-        id: contactId
-    };
+	currentContact.firstName = firstName;
+	currentContact.lastName  = lastName;
+	currentContact.phone = phone;
+	currentContact.email = email;
+	currentContact.id = contactId;
 
     // Save to LocalStorage so it's available on the next page
-    localStorage.setItem("selectedContact", JSON.stringify(selectedContact));
+    localStorage.setItem("selectedContact", JSON.stringify(currentContact));
 
     // Move to the edit page
     window.location.href = "editContact.html";
+	preFillContacts();
 }
 
 function preFillContacts() {
