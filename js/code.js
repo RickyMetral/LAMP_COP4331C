@@ -140,7 +140,7 @@ function addContact()
 
 	let firstName = document.getElementsByClassName("firstNameField")[0].value;
 	let lastName = document.getElementsByClassName("lastNameField")[0].value;
-	let phone = parsreInt(document.getElementsByClassName("phoneField")[0].value); 
+	let phone = parseInt(document.getElementsByClassName("phoneField")[0].value); 
 	let email = document.getElementsByClassName("emailField")[0].value;
 
 	let tmp = {"userId":currentUser.userId, "firstName": firstName, 
