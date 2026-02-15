@@ -95,7 +95,7 @@ function doRegisterUser() {
             if (this.readyState == 4 && this.status == 200) {
                 let jsonObject = JSON.parse(xhr.responseText);
 
-                if (jsonObject.error && jsonObject.error.length > 0) {
+                if (jsonObject.error != "" && jsonObject.error.length > 0) {
                     document.getElementById("regResult").innerHTML = jsonObject.error;
                 } else {
                     document.getElementById("regResult").innerHTML = "Registration Successful!";
