@@ -242,16 +242,41 @@ select{
     font-weight: bold;
 }
 
-.deleteBtn {
-    background-color: #e74c3c; /* Red */
-    color: white;
+.editBtn, .deleteBtn {
     border: none;
-    padding: 5px 10px;
+    padding: 6px 12px;
     cursor: pointer;
     border-radius: 4px;
-    margin-left: 5px;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+    min-width: 70px;
+    margin: 2px;
+}
+
+/* Edit Button Styling (Blue) */
+.editBtn {
+    background-color: #3498db;
+    color: white;
+}
+
+.editBtn:hover {
+    background-color: #2980b9;
+}
+
+/* Delete Button Styling (Red) */
+.deleteBtn {
+    background-color: #e74c3c;
+    color: white;
 }
 
 .deleteBtn:hover {
-    background-color: #c0392b; /* Darker Red */
+    background-color: #c0392b;
+}
+
+/* Table cell alignment for buttons */
+#contactTable td:last-child, 
+#contactTable td:nth-last-child(2) {
+    text-align: center;
+    width: 80px;
 }
