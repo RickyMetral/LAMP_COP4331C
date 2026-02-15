@@ -284,9 +284,11 @@ function searchContact() {
                     row.insertCell(1).innerHTML = contact.Phone;
                     row.insertCell(2).innerHTML = contact.Email;
                     
-                    // Added an Edit button to the row for functionality
+                    // Added an Edit and Delete button to the row for functionality
                     let editCell = row.insertCell(3);
+					let deleteCell = row.insertCell(4);
                     editCell.innerHTML = `<button class="editBtn" onclick="prepareEdit('${contact.FirstName}', '${contact.LastName}', '${contact.Phone}', '${contact.Email}', ${contact.ID})">Edit</button>`;
+					deleteCell.innerHTML = `<button class="deleteBtn" onclick="askDeleteContact(${contact.ID}, '${contact.FirstName} ${contact.LastName}')">Delete</button>`;
                 }
             }
         };
@@ -294,6 +296,44 @@ function searchContact() {
         xhr.send(jsonPayload);
     } catch (err) {
         resultText.innerHTML = err.message;
+    }
+}
+
+function askDeleteContact(contactId, fullName) {
+    if (confirm("Are you sure you want to delete " + fullName + "?")) {
+        doDeleteContact(contactId);
+    }
+}
+
+function doDeleteContact(contactId) {
+    let tmp = {
+        ID: contactId,
+        userId: currentUser.userId
+    };
+
+    let jsonPayload = JSON.stringify(tmp);
+    let url = urlBase + '/DeleteContact.' + extension;
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+    try {
+        xhr.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                let jsonObject = JSON.parse(xhr.responseText);
+
+                if (jsonObject.error && jsonObject.error.length > 0) {
+                    alert("Error: " + jsonObject.error);
+                } else {
+                    // Success! Refresh the search to show the contact is gone
+                    searchContact();
+                }
+            }
+        };
+        xhr.send(jsonPayload);
+    } catch (err) {
+        alert(err.message);
     }
 }
 

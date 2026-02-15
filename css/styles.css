@@ -241,3 +241,17 @@ select{
     background-color: #f2f2f2;
     font-weight: bold;
 }
+
+.deleteBtn {
+    background-color: #e74c3c; /* Red */
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-left: 5px;
+}
+
+.deleteBtn:hover {
+    background-color: #c0392b; /* Darker Red */
+}
