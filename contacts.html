@@ -27,14 +27,24 @@
 <div id="accessUIDiv">
 	<br />
 
-	<input type="text" id="searchText" placeholder="Contact To Search For"/>
-	<button type="button" id="searchContactButton" class="buttons2" onclick="searchContact();"> Search Contact </button><br />
+	<input type="text" id="searchText" placeholder="Search Contact by Full Name"/>
+	<button type="button" id="searchColorButton" class="buttons2" onclick="searchContact();"> Search Contact </button><br />
 	<span id="contactSearchResult"></span>
-	<p id="contactList">
-	</p><br /><br />
+	<table id="contactTable">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody id="contactTableBody">
+            </tbody>
+    </table>
 
-	<button type="button" id="addContactButton" class="buttons2" onclick="doContact();"> Add Contact </button><br />
-	<span id="contactAddResult"></span>
+    <br />
+	<button type="button" id="addColorButton" class="buttons2" onclick="doContact();"> Add Contact </button><br />
+	<span id="colorAddResult"></span>
 </div>
 
 </body>

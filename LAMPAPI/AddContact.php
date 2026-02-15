@@ -2,7 +2,7 @@
 	$inData = getRequestInfo();
 	
 	$firstName = $inData["firstName"];
-    $lastName = $inData["lastName"]
+    $lastName = $inData["lastName"];
 	$phone= $inData["phone"];
 	$email = $inData["email"];
 	$userId = $inData["userId"];
@@ -15,7 +15,7 @@
 	else
 	{
 		$stmt = $conn->prepare("INSERT into Contacts (FirstName, LastName, Phone, Email, UserID) VALUES(?,?,?,?,?)");
-		$stmt->bind_param("ssssi", $firstName, $lastName, $phone, $email, $userId);
+		$stmt->bind_param("ssisi", $firstName, $lastName, $phone, $email, $userId);
 		if($stmt->execute()){
 			$stmt->close();
 			$conn->close();
@@ -38,12 +38,12 @@
 		header('Content-type: application/json');
 		echo $obj;
 	}
-	
+		
 	function returnWithError( $err )
 	{
-		$retValue = '{"error":"' . $err . '"
-                     "fields": "UserId, firstName, lastName, phone, email"}';
+		$retValue = '{"error":"' . $err . '",
+					"fields": "UserId, firstName, lastName, phone, email"}';
 		sendResultInfoAsJson( $retValue );
 	}
-	
+		
 ?>

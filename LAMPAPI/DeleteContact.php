@@ -13,13 +13,12 @@
 	else
 	{
         $stmt = $conn->prepare("DELETE FROM Contacts WHERE ID = ? AND UserID = ? "); 
-        $stmt->bind_param("ss", $id, $userId);
-		if($stmt->execute()){
+        $stmt->bind_param("ii", $id, $userId);
+		if($stmt->execute()) {
 			$stmt->close();
 			$conn->close();
-			returnWithError("");
-		}
-		else{
+			returnWithError(""); 
+		} else {
 			$stmt->close();
 			$conn->close();
 			returnWithError("Could Not Delete Contact");
@@ -34,14 +33,22 @@
 	function sendResultInfoAsJson( $obj )
 	{
 		header('Content-type: application/json');
-		echo $obj;
+		echo json_encode($obj);
 	}
 	
 	function returnWithError( $err )
 	{
-		$retValue = '{"error":"' . $err . '"
-                     "fields": "Id, userId"}';
-		sendResultInfoAsJson( $retValue );
+		$retValue = array(
+        "error" => $err,
+        "fields" => "Id, userId"
+		);
+		sendResultInfoAsJson($retValue);
+	}
+
+	function returnWithInfo($info = "Success")
+	{
+		$retValue = array("error" => "");
+		sendResultInfoAsJson($retValue);
 	}
 	
 ?>

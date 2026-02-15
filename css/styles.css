@@ -223,3 +223,60 @@ select{
     font-family: 'Ubuntu', sans-serif;
     color: #95060a;
 }
+
+#contactTable {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+#contactTable th, #contactTable td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+    color: #333;
+}
+
+#contactTable th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+.editBtn, .deleteBtn {
+    border: none;
+    padding: 6px 12px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+    min-width: 70px;
+    margin: 2px;
+}
+
+/* Edit Button Styling (Blue) */
+.editBtn {
+    background-color: #3498db;
+    color: white;
+}
+
+.editBtn:hover {
+    background-color: #2980b9;
+}
+
+/* Delete Button Styling (Red) */
+.deleteBtn {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.deleteBtn:hover {
+    background-color: #c0392b;
+}
+
+/* Table cell alignment for buttons */
+#contactTable td:last-child, 
+#contactTable td:nth-last-child(2) {
+    text-align: center;
+    width: 80px;
+}
