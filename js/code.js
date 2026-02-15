@@ -43,6 +43,7 @@ window.onload = function() {
     }
 };
 
+// Logging in an existing user (first page)
 function doLogin()
 {
 	
@@ -82,7 +83,7 @@ function doLogin()
 
     			localStorage.setItem("currentUser", JSON.stringify(currentUser));
 	
-				window.location.href = "contacts.html";
+				window.location.href = "contacts.html"; // redirect to contacts page after successful login
 			}
 		};
 		xhr.send(jsonPayload);
