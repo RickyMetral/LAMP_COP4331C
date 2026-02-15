@@ -120,7 +120,7 @@ function readCookie()
 	}
 	else
 	{
-		document.getElementById("userName").innerHTML = "Logged in as " + currentUser.firstName + " " + currentUser.lastName;
+		// document.getElementById("userName").innerHTML = "Logged in as " + currentUser.firstName + " " + currentUser.lastName;
 	}
 }
 
