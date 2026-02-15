@@ -223,25 +223,71 @@ function searchContact() {
     }
 }
 
+function prepareEdit(firstName, lastName, phone, email, contactId) {
+    // We create a temporary object to hold the contact we clicked on
+    let selectedContact = {
+        firstName: firstName,
+        lastName: lastName,
+        phone: phone,
+        email: email,
+        id: contactId
+    };
+
+    // Save to LocalStorage so it's available on the next page
+    localStorage.setItem("selectedContact", JSON.stringify(selectedContact));
+
+    // Move to the edit page
+    window.location.href = "editContact.html";
+}
+
+function preFillContacts() {
+    // Grab the data we saved in prepareEdit
+    let data = localStorage.getItem("selectedContact");
+
+    if (data) {
+        let contact = JSON.parse(data);
+
+        // IMPORTANT: We must use [0] because getElementsByClassName returns an array
+        document.getElementsByClassName("firstNameField")[0].value = contact.firstName;
+        document.getElementsByClassName("lastNameField")[0].value = contact.lastName;
+        document.getElementsByClassName("phoneField")[0].value = contact.phone;
+        document.getElementsByClassName("emailField")[0].value = contact.email;
+        
+        // Sync the global currentContact object so editContact() knows the ID
+        currentContact.id = contact.id;
+        currentContact.firstName = contact.firstName;
+        currentContact.lastName = contact.lastName;
+        currentContact.phone = contact.phone;
+        currentContact.email = contact.email;
+    }
+}
 
 //Reads all fields and makes API requeest to update contact
 function editContact()
 {
 	document.getElementById("editResult").innerHTML = "";
 
-	let firstName = document.getElementsByClassName("firstNameField").value;
-	let lastName = document.getElementsByClassName("lastNameField").value;
-	let phone = document.getElementsByClassName("phoneField").value; 
-	let email = document.getElementsByClassName("emailField").value;
+	let first = document.getElementsByClassName("firstNameField")[0].value;
+    let last = document.getElementsByClassName("lastNameField")[0].value;
+    let phone = document.getElementsByClassName("phoneField")[0].value;
+    let email = document.getElementsByClassName("emailField")[0].value;
 
-	let tmp = {"ID":currentContact.id, "userId":currentContact.userId, "firstName": firstName, 
-		"lastName": lastName, "phone": phone, "email": email};
+	// Use the ID we stored during preFillContacts
+    let tmp = {
+        ID: currentContact.id, 
+        userId: currentUser.userId, 
+        firstName: first, 
+        lastName: last, 
+        phone: phone, 
+        email: email
+    }
 
 	let jsonPayload = JSON.stringify( tmp );
 	let url = urlBase + '/EditContact.' + extension;
 	let xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
 	try
 	{
 		xhr.onreadystatechange = function() 
@@ -252,6 +298,9 @@ function editContact()
 
 				if(jsonObject.error == ""){
 					document.getElementById("editResult").innerHTML = "Contact Successfully Updated";
+					setTimeout(function() {
+           				window.location.href = "contacts.html";
+    				}, 1000);
 				}
 				else{
 					document.getElementById("editResult").innerHTML = jsonObject.error;
@@ -267,19 +316,3 @@ function editContact()
 }
 
 
-function setCurrentContact(firstName, lastName, phone, email)
-{
-	currentContact.firstName = firstName;
-	currentContact.lastName = lastName;
-	currentContact.phone = phone;
-	currentContact.email = email;
-}
-
-function preFillContacts()
-{
-	document.getElementsByClassName("firstNameField").value = currentContact.firstName;
-	document.getElementsByClassName("lastNameField").value = currentContact.lastName; 
-	document.getElementsByClassName("phoneField").value = currentContact.phone;
-	document.getElementsByClassName("emailField").value = currentContact.email;
-
-}
