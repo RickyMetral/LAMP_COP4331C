@@ -6,6 +6,7 @@ let currentUser = {
     firstName: "",
     lastName: "",
 }
+
 let currentContact = {
 	id : "",
     firstName: "",
@@ -20,12 +21,12 @@ function doLogin()
 	
 	let login = document.getElementById("loginName").value;
 	let password = document.getElementById("loginPassword").value;
-//	var hash = md5( password );
+	var hash = md5( password );
 	
 	document.getElementById("loginResult").innerHTML = "";
 
-	let tmp = {login:login,password:password};
-//	var tmp = {login:login,password:hash};
+	// let tmp = {login:login,password:password};
+	var tmp = {login:login,password:hash};
 	let jsonPayload = JSON.stringify( tmp );
 	
 	let url = urlBase + '/Login.' + extension;
@@ -139,10 +140,10 @@ function addContact()
 
 	let firstName = document.getElementsByClassName("firstNameField")[0].value;
 	let lastName = document.getElementsByClassName("lastNameField")[0].value;
-	let phone = document.getElementsByClassName("phoneField")[0].value; 
+	let phone = parsreInt(document.getElementsByClassName("phoneField")[0].value); 
 	let email = document.getElementsByClassName("emailField")[0].value;
 
-	let tmp = {"userId":currentContact.userId, "firstName": firstName, 
+	let tmp = {"userId":currentUser.userId, "firstName": firstName, 
 		"lastName": lastName, "phone": phone, "email": email};
 	let jsonPayload = JSON.stringify( tmp );
 
