@@ -213,7 +213,7 @@ function addContact()
 
 	let firstName = document.getElementsByClassName("firstNameField")[0].value;
 	let lastName = document.getElementsByClassName("lastNameField")[0].value;
-	let phone = parseInt(document.getElementsByClassName("phoneField")[0].value); 
+	let phone = (document.getElementsByClassName("phoneField")[0].value); 
 	let email = document.getElementsByClassName("emailField")[0].value;
 
 	let tmp = {"userId":currentUser.userId, "firstName": firstName, 
@@ -367,7 +367,7 @@ function preFillContacts() {
         // IMPORTANT: We must use [0] because getElementsByClassName returns an array
         document.getElementsByClassName("firstNameField")[0].value = contact.firstName;
         document.getElementsByClassName("lastNameField")[0].value = contact.lastName;
-        document.getElementsByClassName("phoneField")[0].value = parseInt(contact.phone);
+        document.getElementsByClassName("phoneField")[0].value = (contact.phone);
         document.getElementsByClassName("emailField")[0].value = contact.email;
         
         // Sync the global currentContact object so editContact() knows the ID
