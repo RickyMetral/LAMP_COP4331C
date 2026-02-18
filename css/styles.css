@@ -121,6 +121,8 @@ header {
 {
     background-color: #ffffff;
     color: var(--monster-green);
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
     font-size: 30px;
     border-radius: 10px;
     border-color: #3e2d7a;
@@ -134,12 +136,19 @@ header {
 {
     font-size: 30px;
     color: var(--monster-green);
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
     background-color: #ffffff;
     border-radius: 10px;
     border-color: #3e2d7a;
     width: 40%;
     margin-left: 30%;
     font-family: 'MonsterAG', sans-serif;
+}
+
+#registerButton {
+    width: 30%;
+    margin-left: 10%;
 }
 
 .buttons:hover{

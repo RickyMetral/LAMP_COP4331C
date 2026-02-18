@@ -1,4 +1,5 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
 	<title>COP 4331 LAMP Stack Contact Manager</title>
 	<script>
@@ -11,6 +12,7 @@
 	<script type="text/javascript" src="js/code.js"></script>
     <link href="css/styles.css" rel="stylesheet">	
     <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+	<meta name="description" content="Edit Contact Page. UCF Group 6 COP3441C Project.">
 	
 	<script type="text/javascript">
 	document.addEventListener('DOMContentLoaded', function() 
@@ -20,21 +22,22 @@
 	}, false);
 	</script>
 </head>
-<header>
+<header role="title">
 <div class ="containerHeader">
 <h1 id="title">COP 4331 LAMP Stack Contact Manager</h1>
 </div>
 </header>
-
-<div id="loginDiv">
-	<span id="inner-title">Edit Contact</span>
-	<input type="text" id="contactForm" class="firstNameField" placeholder="First Name" /><br />
-	<input type="text" id="contactForm" class = "lastNameField" placeholder="Last Name" /><br />
-	<input type="number" id="contactForm" class = "phoneField" placeholder="(000)-000-0000"/><br />
-		<input type="email" id="contactForm" class = "emailField" placeholder="Email"/><br />
-	<button type="button" id="registerButton" class="buttons2" onclick="editContact();"> Edit Contact </button>
-	<span id="editResult"></span>
-</div>
-
+<main role="mainContent">
+	<div id="loginDiv">
+		<span id="inner-title">Edit Contact</span>
+		<input type="text" id="contactForm" class="firstNameField" placeholder="First Name" /><br />
+		<input type="text" id="contactForm" class = "lastNameField" placeholder="Last Name" /><br />
+		<input type="number" id="contactForm" class = "phoneField" placeholder="(000)-000-0000"/><br />
+			<input type="email" id="contactForm" class = "emailField" placeholder="Email"/><br />
+		<button type="button" id="returnButton" class="buttons" onclick="doReturn();">Back</button>
+		<button type="button" id="registerButton" class="buttons2" onclick="editContact();"> Edit Contact </button>
+		<span id="editResult"></span>
+	</div>
+</main>
 </body>
 </html>

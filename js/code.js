@@ -145,6 +145,16 @@ function doRegister()
 	window.location.href = "register.html";
 }
 
+function doReturn()
+{
+	let currPage = window.location.pathname;
+	if (currPage.includes("register.html")) {
+		window.location.href = "index.html";
+	} else if (currPage.includes("createContact.html") || currPage.includes("editContact.html")) {
+		window.location.href = "contacts.html";
+	}
+}
+
 function doContact()
 {
 	window.location.href = "createContact.html";

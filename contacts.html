@@ -1,9 +1,11 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
 	<title>COP 4331 LAMP Stack Demo</title>
 	<script type="text/javascript" src="js/code.js"></script>
     <link href="css/styles.css" rel="stylesheet">	
     <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    <meta name="description" content="Contacts Page. UCF Group 6 COP3441C Project.">
 	
 	<script type="text/javascript">
 	document.addEventListener('DOMContentLoaded', function() 
@@ -16,36 +18,36 @@
 </head>
 <body>
 
-<header>
+<header role="title">
 <div class ="containerHeader">
 <h1 id="title">COP 4331 LAMP Stack Contact Manager</h1>
 	<span id="userName"></span><br />
 	<button type="button" id="logoutButton" class="buttons" onclick="doLogout();"> Log Out </button>
 </div>
 </header>
+<main role="mainContent">
+    <div id="accessUIDiv">
+        <br />
 
-<div id="accessUIDiv">
-	<br />
+        <input type="text" id="searchText" placeholder="Search Contact by Full Name"/>
+        <button type="button" id="searchColorButton" class="buttons2" onclick="searchContact();"> Search Contact </button><br />
+        <span id="contactSearchResult"></span>
+        <table id="contactTable">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody id="contactTableBody">
+                </tbody>
+        </table>
 
-	<input type="text" id="searchText" placeholder="Search Contact by Full Name"/>
-	<button type="button" id="searchColorButton" class="buttons2" onclick="searchContact();"> Search Contact </button><br />
-	<span id="contactSearchResult"></span>
-	<table id="contactTable">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Phone</th>
-                <th>Email</th>
-            </tr>
-        </thead>
-        <tbody id="contactTableBody">
-            </tbody>
-    </table>
-
-    <br />
-	<button type="button" id="addColorButton" class="buttons2" onclick="doContact();"> Add Contact </button><br />
-	<span id="colorAddResult"></span>
-</div>
-
+        <br />
+        <button type="button" id="addColorButton" class="buttons2" onclick="doContact();"> Add Contact </button><br />
+        <span id="colorAddResult"></span>
+    </div>
+</main>
 </body>
 </html>
